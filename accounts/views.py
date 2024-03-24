@@ -26,14 +26,12 @@ class SignUpView(CreateView):
 class LoginView(FormView):
     template_name = 'accounts/login.html'
     form_class = AuthenticationForm
-    success_url = 'inicio\home.html'  # Cambia '/home/' por la URL a la que desees redirigir al usuario
+    success_url = reverse_lazy('home')  
 
     def form_valid(self, form):
         user = form.get_user()
         login(self.request, user)
         return super().form_valid(form)
- 
-
 
 
 # Vista para ver el perfil de usuario
@@ -41,6 +39,7 @@ class ProfileDetailView(DetailView):
     model = Profile
     template_name = 'accounts/profile.html'
     context_object_name = 'profile'
+    
 
 # Vista para actualizar el perfil de usuario
 class ProfileUpdateView(UpdateView):

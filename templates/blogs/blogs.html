@@ -1,4 +1,3 @@
-<!-- blogs/templates/blogs/blogs.html -->
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
@@ -15,7 +14,7 @@
         {% for blog in blogs %}
         <li><a href="{% url 'blogs:blog_detail' pk=blog.pk %}">{{ blog.title }}</a></li>
         {% empty %}
-            <li>No blogs yet.</li>
+            <li>No se encuentra ningun blog.</li>
         {% endfor %}
     </ul>
 </body>

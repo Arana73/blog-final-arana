@@ -12,7 +12,13 @@
   <h2>Lista de Mensajes</h2>
   <ul>
     {% for message in messages %}
-      <li><a href="{% url 'user_messages:message_detail' pk=message.pk %}">{{ message.subject }}</a></li>
+      <li>
+        <a href="{% url 'user_messages:message_detail' pk=message.pk %}">{{ message.subject }}</a>
+        <form action="{% url 'user_messages:message_delete' pk=message.pk %}" method="post">
+          {% csrf_token %}
+          <button type="submit">Eliminar</button>
+        </form>
+      </li>
     {% empty %}
       <li>No hay mensajes.</li>
     {% endfor %}

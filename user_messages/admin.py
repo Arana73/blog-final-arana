@@ -1,4 +1,3 @@
-# user_messages/admin.py
 from django.contrib import admin
 from .models import Message
 from django.contrib.auth.models import User
