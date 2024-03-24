@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mi Blog de Viajes{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Mi Blog de Viajes</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Inicio</a></li>
+                <li><a href="{% url 'about' %}">Acerca de</a></li>
+                <li><a href="{% url 'blogs:blogs' %}">Blogs</a></li>                
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'accounts:profile' pk=user.profile.pk %}">Perfil</a></li>
+                    <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+                    <li><a href="{% url 'blogs:create_blog' %}">Crear Blog</a></li>
+                    {% if blog %}
+                        <li><a href="{% url 'blogs:update_blog' pk=blog.pk %}">Editar Blog</a></li>
+                        <li><a href="{% url 'blogs:delete_blog' pk=blog.pk %}">Eliminar Blog</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'accounts:update_profile' pk=user.profile.pk %}">Editar Perfil</a></li>
+                    <li><a href="{% url 'user_messages:message_create' %}">Enviar Mensaje</a></li>
+                    <li><a href="{% url 'user_messages:message_list' %}">Lista de Mensajes</a></li>
+                {% else %}
+                    <li><a href="{% url 'accounts:login' %}">Iniciar Sesión</a></li>
+                    <li><a href="{% url 'accounts:signup' %}">Registrarse</a></li>
+                {% endif %}
+                
+                <!-- Lista de blogs -->
+                {% for blog in blogs %}
+                    <li><a href="{% url 'blogs:blog_detail' pk=blog.pk %}">{{ blog.title }}</a></li>
+                {% empty %}
+                    <li>No blogs yet.</li>
+                {% endfor %}
+            </ul>
+        </nav>
+        
+        
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mi Blog de Viajes. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

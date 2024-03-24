@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Editar Perfil{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+</head>
+<body>
+    <h1>Edit Profile</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="id_nombre">Nombre:</label>
+        <input type="text" id="id_nombre" name="nombre" value="{{ profile.nombre }}"><br>
+        
+        <label for="id_descripcion">Descripción:</label>
+        <textarea id="id_descripcion" name="descripcion">{{ profile.descripcion }}</textarea><br>
+        
+        <label for="id_imagen">Imagen de perfil:</label>
+        <input type="file" id="id_imagen" name="imagen"><br>
+        
+        <input type="submit" value="Guardar cambios">
+    </form>
+</body>
+</html>
+{% endblock %}

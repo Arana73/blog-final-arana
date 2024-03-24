@@ -1,0 +1,21 @@
+<!-- blogs/templates/blogs/blog_detail.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ blog.title }}</title>
+</head>
+<body>
+    <h2>{{ blog.title }}</h2>
+    <h3>{{ blog.subtitle }}</h3>
+    <p>{{ blog.body }}</p>
+    <p>Author: {{ blog.author }}</p>
+    <p>Date: {{ blog.pub_date }}</p>
+    <img src="{{ blog.image.url }}" alt="{{ blog.title }} Image">
+</body>
+</html>
+{% endblock %}

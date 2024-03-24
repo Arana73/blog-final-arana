@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Mensaje</title>
+</head>
+<body>
+  <h2>Detalles del Mensaje</h2>
+  <p><strong>Asunto:</strong> {{ message.subject }}</p>
+  <p><strong>Remitente:</strong> {{ message.sender }}</p>
+  <p><strong>Receptor:</strong> {{ message.receiver }}</p>
+  <p><strong>Cuerpo:</strong> {{ message.body }}</p>
+  <p><strong>Fecha de Creación:</strong> {{ message.created_at }}</p>
+  <p><strong>Leído:</strong> {% if message.read %}Sí{% else %}No{% endif %}</p>
+</body>
+</html>
+{% endblock %}

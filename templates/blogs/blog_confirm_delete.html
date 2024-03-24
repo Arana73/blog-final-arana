@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Eliminación</title>
+</head>
+<body>
+  <h2>¿Estás seguro de que deseas eliminar este blog?</h2>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Eliminar</button>
+    <a href="{% url 'blogs:blog_detail' pk=blog.pk %}">Cancelar</a>
+  </form>
+</body>
+</html>
+{% endblock %}

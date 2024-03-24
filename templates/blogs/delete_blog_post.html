@@ -1,0 +1,16 @@
+<!-- En accounts/templates/accounts/delete_blog_post.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <h2>Eliminar publicación de blog</h2>
+  <p>¿Estás seguro de que deseas eliminar la siguiente publicación de blog?</p>
+  <p><strong>Título:</strong> {{ blog_post.title }}</p>
+  <p><strong>Subtítulo:</strong> {{ blog_post.subtitle }}</p>
+  <p><strong>Cuerpo:</strong> {{ blog_post.body }}</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar eliminación</button>
+  </form>
+{% endblock %}
