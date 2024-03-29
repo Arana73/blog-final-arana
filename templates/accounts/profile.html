@@ -11,7 +11,9 @@
 <body>
     <h1>{{ profile.nombre }}</h1>
     <p>{{ profile.descripcion }}</p>
-    <img src="{{ profile.imagen.url }}" alt="{{ profile.nombre }}'s profile picture">
+    <p>Nombre: {{ profile.nombre }}</p>
+    <p>Descripción: {{ profile.descripcion }}</p>
+    <img src="{{ profile.imagen.url }}" alt="Foto de perfil {{ profile.nombre }}">
 </body>
 </html>
 {% endblock %}

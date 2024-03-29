@@ -4,46 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Mi Blog de Viajes{% endblock %}</title>
+    <title style="text-align: center;">{% block title %}Mi Blog de Viajes{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        /* Estilos para la barra de navegación horizontal */
+        header {
+            text-align: center; /* Centra el contenido del encabezado */
+            background-color: #333; /* Color de fondo de la barra de navegación */
+            padding: 10px 0; /* Añade un espacio interno arriba y abajo */
+        }
+        header nav {
+            display: inline-block; /* Muestra la barra de navegación en línea */
+        }
+        header nav a {
+            margin: 0 10px; /* Espacio entre los enlaces */
+            text-decoration: none; /* Quita la subrayado de los enlaces */
+            color: #fff; /* Color del texto */
+        }
+        footer {
+            text-align: center; /* Centra el contenido del pie de página */
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Mi Blog de Viajes</h1>
+        <h1 style="color: #fff;">Mi Blog de Viajes</h1>
         <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">Inicio</a></li>
-                <li><a href="{% url 'about' %}">Acerca de</a></li>
-                <li><a href="{% url 'blogs:blogs' %}">Blogs</a></li>                
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'accounts:profile' pk=user.profile.pk %}">Perfil</a></li>
-                    <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
-                    <li><a href="{% url 'blogs:create_blog' %}">Crear Blog</a></li>
-                    {% if blog %}
-                        <li><a href="{% url 'blogs:update_blog' pk=blog.pk %}">Editar Blog</a></li>
-                        <li><a href="{% url 'blogs:delete_blog' pk=blog.pk %}">Eliminar Blog</a></li>
-                    {% endif %}
-                    <li><a href="{% url 'accounts:update_profile' pk=user.profile.pk %}">Editar Perfil</a></li>
-                    <li><a href="{% url 'user_messages:message_create' %}">Enviar Mensaje</a></li>
-                    <li><a href="{% url 'user_messages:message_list' %}">Lista de Mensajes</a></li>
-                {% else %}
-                    <li><a href="{% url 'accounts:signup' %}">Registrarse</a></li>
-                    <li><a href="{% url 'accounts:login' %}">Iniciar Sesión</a></li>                    
+            <a href="{% url 'home' %}">Inicio</a>
+            <a href="{% url 'about' %}">Acerca de</a>
+            <a href="{% url 'blogs:blogs' %}">Blogs</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'accounts:profile' pk=user.profile.pk %}">Perfil</a>
+                <a href="{% url 'logout' %}">Cerrar Sesión</a>
+                <a href="{% url 'blogs:create_blog' %}">Crear Blog</a>
+                {% if blog %}
+                    <a href="{% url 'blogs:update_blog' pk=blog.pk %}">Editar Blog</a>
+                    <a href="{% url 'blogs:delete_blog' pk=blog.pk %}">Eliminar Blog</a>
                 {% endif %}
-                
-                
-            </ul>
+                <a href="{% url 'accounts:update_profile' pk=user.profile.pk %}">Editar Perfil</a>
+                <a href="{% url 'user_messages:message_create' %}">Enviar Mensaje</a>
+                <a href="{% url 'user_messages:message_list' %}">Lista de Mensajes</a>
+            {% else %}
+                <a href="{% url 'accounts:signup' %}">Registrarse</a>
+                <a href="{% url 'accounts:login' %}">Iniciar Sesión</a>
+            {% endif %}
         </nav>
-        
-        
     </header>
     <main>
         {% block content %}
         {% endblock %}
     </main>
-
     <footer>
         <p>&copy; 2024 Mi Blog de Viajes. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>
+
